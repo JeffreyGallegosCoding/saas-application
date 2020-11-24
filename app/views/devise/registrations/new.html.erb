@@ -23,6 +23,18 @@
   </div>
 
   <div class="form-group">
+    <%= fields_for( :tenant ) do |w| %>
+      <div class="form-group col-md-6 no-left-padding">
+        <%= w.label :name, 'Organization' %>
+        <span class="description">(Unique Name for your group/organization)</span>
+        <%= w.text_field :name, required: true, class: "form-control" %>
+      </div>
+      <div class="form-group col-md-6 no-right-padding">
+        <%= w.label :plan %>
+        <%= w.select :plan, options_for_select(Plan.options, params[:plan]), {}, required: true, class: "form-control" %>
+      </div>
+    <% end %>
+
     <%= f.submit t('.sign_up'), class: 'btn btn-primary' %>
   </div>
 <% end %>
