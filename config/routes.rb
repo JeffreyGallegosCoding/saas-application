@@ -5,13 +5,15 @@ Rails.application.routes.draw do
   root :to => "home#index"
     
   # *MUST* come *BEFORE* devise's definitions (below)
+  # updated match path to match with out confirmations path instead of milia's
   as :user do   
-    match '/user/confirmation' => 'milia/confirmations#update', :via => :put, :as => :update_user_confirmation
+    match '/user/confirmation' => 'confirmations#update', :via => :put, :as => :update_user_confirmation
   end
 
   devise_for :users, :controllers => { 
     :registrations => "milia/registrations",
-    :confirmations => "milia/confirmations",
+    # did the same here, took out milias path in confirmations
+    :confirmations => "confirmations",
     :sessions => "milia/sessions", 
     :passwords => "milia/passwords", 
   }
