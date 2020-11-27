@@ -1,6 +1,8 @@
 class Project < ApplicationRecord
   belongs_to :tenant
   validates_uniqueness_of :title
+  # if project is deleted then all artifacts with project will also be deleted
+  has_many :artifacts, dependent: :destroy
   validate :free_plan_can_only_have_one_project
 
 

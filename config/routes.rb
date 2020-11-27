@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :artifacts
   # Ensures that projects routes is within tenants
   resources :tenants do
     resources :projects
