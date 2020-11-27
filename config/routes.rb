@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  # Ensures that projects routes is within tenants
+  resources :tenants do
+    resources :projects
+  end
+
   resources :members
   get 'home/index'
   root :to => "home#index"
