@@ -31,3 +31,6 @@
 
 # Ignore .zshrc
 /.zshrc
+
+# Ignore application.yml
+/config/application.yml

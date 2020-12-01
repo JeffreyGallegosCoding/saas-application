@@ -11,6 +11,7 @@ gem 'devise'
 gem 'milia'
 gem 'aws-sdk'
 gem 'stripe'
+gem 'figaro'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets

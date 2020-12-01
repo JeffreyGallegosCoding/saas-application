@@ -99,6 +99,11 @@
   color: #5cb85c;
 }
 
+.no-side-padding {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 .no-right-padding {
   padding-right: 0 !important;
 }
@@ -114,4 +119,14 @@
   a.main-link:hover {
     background: none;
   }
+}
+
+.logout {
+  padding-left: 0;
+}
+
+.navbar.navbar-static-top {
+  background: #000;
+  color: #fff !important;
+  padding-bottom: 5px;
 }

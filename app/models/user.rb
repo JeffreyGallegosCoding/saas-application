@@ -8,4 +8,9 @@ class User < ApplicationRecord
 
   has_one :member, dependent: :destroy
 
+  def is_admin?
+    # either returns true or false since it is a boolean
+    is_admin
+  end
+
 end
