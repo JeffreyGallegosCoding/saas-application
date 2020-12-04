@@ -23,11 +23,13 @@ function GetURLParameter(sParam) {
 
 
 $(document).ready(function () {
+    console.log('javascripthere');
 
     var show_error, stripeResponseHandler, submitHandler;
 
 // 2.function to handle the submit of the form and intercept the default event (submitHandler)
     submitHandler = function(event) {
+        console.log('submithandler');
         // reference what has triggered this (use the target method)
       var $form = $(event.target);
         // find and disable the submit button so it doesn't get hit multiple times upon submission
@@ -39,7 +41,7 @@ $(document).ready(function () {
           show_error("Failed to load credit card processing functionality. Please reload the page")
       }
         // prevent the default action from happening (submit form, create account, etc.)
-      return false
+      return false;
     };
 
 // 3.initiate submit handler listener for any form with class "cc_form"
@@ -83,6 +85,7 @@ $(document).ready(function () {
 
 // 7.function to handle the token received from stripe and remove credit card fields so they don't hit database
     stripeResponseHandler = function (status, response) {
+        console.log('stripeResponseHandler');
         var token, $form;
 
         $form = $('.cc_form');
@@ -98,11 +101,12 @@ $(document).ready(function () {
             $form.append($("<input type=\"hidden\" name=\"payment[token]\" />").val(token));
             // remove the info from the credit card so it doesn't hit db
             $("[data-stripe=number]").remove();
-            $("[data-stripe=cvv]").remove();
-            $("[data-stripe=year]").remove();
-            $("[data-stripe=month]").remove();
+            $("[data-stripe=cvc]").remove();
+            $("[data-stripe=exp-year]").remove();
+            $("[data-stripe=exp-month]").remove();
             $("[data-stripe=label]").remove();
             // then submit the form
+            console.log(token)
             $form.get(0).submit();
         }
         return false;

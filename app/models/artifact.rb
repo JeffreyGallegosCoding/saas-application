@@ -14,7 +14,7 @@ class Artifact < ApplicationRecord
 
   # method used to upload artifacts to s3
   def upload_to_s3
-    s3 = Aws::S3::Resource.new(region:ENV['us-west-1'])
+    s3 = Aws::S3::Resource.new(region: ENV['AWS_REGION'])
     tenant_name = Tenant.find(Thread.current[:tenant_id]).name
     obj = s3.bucket(ENV['S3_BUCKET']).object("#{tenant_name}/#{upload.original_filename}")
     obj.upload_file(upload.path, acl:'public-read')

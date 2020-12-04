@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
 
+  resources :user_projects
   resources :artifacts
   # Ensures that projects routes is within tenants
   resources :tenants do
-    resources :projects
+    resources :projects do
+      get 'users', on: :member
+      put 'add_user', on: :member
+    end
   end
 
   resources :members
@@ -12,7 +16,7 @@ Rails.application.routes.draw do
     
   # *MUST* come *BEFORE* devise's definitions (below)
   # updated match path to match with out confirmations path instead of milia's
-  as :user do   
+  as :user do
     match '/user/confirmation' => 'confirmations#update', :via => :put, :as => :update_user_confirmation
   end
 
