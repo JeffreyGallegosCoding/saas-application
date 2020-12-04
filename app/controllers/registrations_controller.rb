@@ -39,7 +39,6 @@ class RegistrationsController < Milia::RegistrationsController
             begin
               # Calling process payment method in payment model
               @payment.process_payment
-              puts 'Its WORKING!!'
               @payment.save
               # if it doesnt save we have to catch the exception and delete the tenant
             rescue Exception => e

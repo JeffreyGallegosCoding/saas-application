@@ -23,7 +23,6 @@ function GetURLParameter(sParam) {
 
 
 $(document).ready(function () {
-    console.log('javascripthere');
 
     var show_error, stripeResponseHandler, submitHandler;
 
@@ -85,14 +84,12 @@ $(document).ready(function () {
 
 // 7.function to handle the token received from stripe and remove credit card fields so they don't hit database
     stripeResponseHandler = function (status, response) {
-        console.log('stripeResponseHandler');
         var token, $form;
 
         $form = $('.cc_form');
 
         // log the error, show the error, and enable the button
         if(response.error) {
-            console.log(response.error.message);
             show_error(response.error.message);
             $form.find("input[type=submit]").prop("disabled", false);
         } else {
@@ -106,7 +103,6 @@ $(document).ready(function () {
             $("[data-stripe=exp-month]").remove();
             $("[data-stripe=label]").remove();
             // then submit the form
-            console.log(token)
             $form.get(0).submit();
         }
         return false;
